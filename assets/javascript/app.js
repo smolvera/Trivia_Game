@@ -4,71 +4,66 @@ $('#start').on("click", function() {
     $('#start').remove();
     game.loadQuestion();
 })
-$(document).on('click','answer-button', function(e){
+
+$(document).on('click','.answer-button', function(e){
     game.clicked(e);
 })
 $(document).on('click', '#reset', function(){
     game.reset();
 })
 
-// $("document").on('click', '#reset', fuction(){
-//     game.reset();
-// })
-
-
-// questions are not loading to the page????
 
 // Trivia question variables
 var questions = [{
     question: "What is the name for a dog created by crossing a Labrador Retriever and a Poodle?",
     answers: ["Retrioodle", "Labradoodle", "LabPoo", "Lareoodle"],
     correctAnswer: "Labradoodle",
-    // image: src="https://goo.gl/images/MxjXCG"
+    image: src="https://goo.gl/images/MxjXCG"
 }, {
     question: "The Chihuahua is a breed of dog believed to originate from what country?",
     answers: ["Spain", "Venezuela", "China", "Mexico"],
     correctAnswer: "Mexico",
-    // image: src="https://goo.gl/images/Uj658O"
+    image: src="https://goo.gl/images/Uj658O"
 }, {
     question: "What is the most popular breed of dog in the United States?",
     answers: ["Labrador Retriever", "Golden Retriever", "American Staffordshire Terrier", "German Shepherd"],
     correctAnswer: "Labrador Retriever",
-    // image: src="https://goo.gl/images/wVpxfh"
+    image: src="https://goo.gl/images/wVpxfh"
 }, {
     question: "A puggle is a cross between which two dog breeds?",
     answers: ["Doberman Pinscher and Pug", "Pug and Persian", "Dog and Cat", "Beagle and Poodle"],
     correctAnswer: "Pug and Beagle",
-    // image: src="https://goo.gl/images/6sJtua"
+    image: src="https://goo.gl/images/6sJtua"
 }, {
     question: "How many chambers are there in a dog's heart?",
     answers: ["1", "4", "2", "6"],
     correctAnswer: "4",
-    // image: src="https://goo.gl/images/ImLKuu"
+    image: src="https://goo.gl/images/ImLKuu"
 }, {
     question: "In the United States which breed of dog is commonly known as a firehouse dog?",
     answers: ["Dalmatian", "German Sheppard", "English Setter", "Greyhound"],
     correctAnswer: "Dalmatian",
-    // image: src="https://goo.gl/images/5kjXgr"
+    image: src="https://goo.gl/images/5kjXgr"
 }, {
     question: "The dingo is a free ranging dog found mainly in which country?",
     answers: ["California", "Australia", "Mexico", "Arizona"],
     correctAnswer: "Australia",
-    // image: src="https://goo.gl/images/KGsqXm"
+    image: src="https://goo.gl/images/KGsqXm"
 }, {
     question: "What breed of horse is best known for its use in racing?",
     answers: ["Mustang", "Quarter Horse", "Arabian", "Thoroughbred"],
     correctAnswer: "Thoroughbred",
-    // image: src="https://goo.gl/images/4YzKWg"
+    image: src="https://goo.gl/images/4YzKWg"
 }, {
     question: "What chemical element gives the blood of a lobster a bluish tint?",
     answers: ["Nickel", "Maganate", "Copper", "Chromium"],
     correctAnswer: "Copper",
-    // image: src="https://goo.gl/images/fj7Pm9"
+    image: src="https://goo.gl/images/fj7Pm9"
 }, {
     question: "What is the name for the offspring of a male donkey and a female horse?",
     answers: ["Pony", "Mule", "Minature Horse", "Ass"],
     correctAnswer: "Mule",
-    // image: src="https://goo.gl/images/doa9x9"
+    image: src="https://goo.gl/images/doa9x9"
 }];
 
 // testing questions
@@ -103,6 +98,7 @@ console.log(questions)
             }
           },
 
+        //   This function loads the next question and restarts the timer
           nextQuestion: function() {
               game.counter = 30;
               $('#counter').html(game.counter);
@@ -110,6 +106,7 @@ console.log(questions)
               game.loadQuestion();
           },
 
+        // This function loads when time has lapsed, the timer resets, unaswered question count goes up
           timeUp: function() {
                 clearInterval(timer);
                 game.unanswered++;
@@ -121,7 +118,7 @@ console.log(questions)
                     setTimeout(game.nextQuestion, 3*1000);
                 }
           },
-
+        //   At the end of the game, the results of answered and unanswered questions are revealed
           results: function() {
                 clearInterval(timer);
                 $('#startButton').html("<h2>Completed!!!</h2>");
@@ -131,6 +128,7 @@ console.log(questions)
                 $('#startButton').append("<button id='reset'>Reset</button>");
           }, 
 
+        //   
           clicked: function(e) {
                 clearInterval(timer);
                 if($(e.target).data("name")==questions[game.currentQuestion].correctAnswer){
